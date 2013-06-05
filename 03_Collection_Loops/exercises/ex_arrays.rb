@@ -7,3 +7,32 @@
 # Print AND remove the last category.
 # Write a conditional that checks if the array has more than 5 elements in it. If the condition is true, remove all elements.
 # Hug yourself.
+
+categories = []
+
+categories << "Animals"
+categories.push "Shopping"
+categories.unshift "Charlie"
+
+categories.uniq!
+
+if categories.include?("Animals") && categories.include?("Shopping")
+	categories << "Family"
+end
+
+puts categories.sort.join(", ") #THis is the proper way to do the following lines that are commented
+
+# 0.upto(categories.size-1) do |num|
+# 	print "#{categories.sort[num]}"
+# 	if categories.size-1 != num
+# 		print ", "
+# 	end
+# end
+# puts ""
+
+puts categories.shift
+puts categories.pop
+
+if categories.size > 5
+	categories = []
+end
