@@ -12,3 +12,24 @@
 # Use a loop, so that your program continues to ask a user for stories until they chose to quit. ("Would you like to add another story? Enter 'y' or 'n'")
 # Once the user is finished with entering their stories, use .each to print each story in the stories array.
 #
+def question(question)
+	print "#{question} "
+	gets.chomp
+end
+
+stories = []
+
+while question("Do you want to add another story? (y/n)") != "n"
+title = question("enter title:")
+category = question("enter cat:")
+upvotes = question("current upvotes:").to_i
+
+stories << {title: title, category: category, upvotes: upvotes}
+end
+
+#The following line is the same as line 33-35, but on a single line.
+stories.each {|story| puts "Story: #{story[:title]} | Category: #{story[:category]} | Upvotes: #{story[:upvotes]}"}
+
+# stories.each do |story|
+# 	puts "Story: #{story[:title]} | Category: #{story[:category]} | Upvotes: #{story[:upvotes]}"
+# end
