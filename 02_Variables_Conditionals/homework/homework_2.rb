@@ -29,25 +29,23 @@ puts "Hi #{name}!"	#Tells the user Hello and prints the users name.
 puts "You have three chances to guess a number between 1 and 10."	#Instructions for the game.
 
 secret_number = rand(10)+1 #Calculates the secret number
-puts secret_number
+guess = 0 #0 Intiialize the guess
 
-3.downto(1) do |num| #Loop 3 times (for 3 guesss)
-	guess = guessMethod
+2.downto(0) do |num| #Loop 3 times (for 3 guesss)
+	guess = guessMethod #Ask for the guess
 	if guess > secret_number #If the guess is too high...
-		puts "Too high! You have #{num-1} #{guesses?(num)} left."
+		puts "Too high! You have #{num} #{guesses?(num)} left."
 	elsif guess < secret_number #If the guess is too low...
-		puts "Too low! You have #{num-1} #{guesses?(num)} left."
+		puts "Too low! You have #{num} #{guesses?(num)} left."
 	elsif guess == secret_number #If they guessed correctly...
 		puts "Congratulations #{name}, you guessed the Secret Number! You win!"
 		break
 	end
 end
 
-puts guess #errors here.
-
-# if guess != secret_number #If case for failure to guess secret_number
-# 	puts "Sorry #{name}, you've run out of guesses, you lose. The number was #{secret_number}."
-# end
+if guess != secret_number #If case for failure to guess secret_number
+	puts "Sorry #{name}, you've run out of guesses, you lose. The number was #{secret_number}."
+end
 #--- Output End ---
 #--- HOMEWORK END ----
 
