@@ -13,14 +13,13 @@ def guessMethod		#This method gets the user input and verifies it falls within a
 	end
 end
 
-def guesses?(i)
-	if i == 1
+def guesses?(i) #Method appends the proper grammar to the end of "guess(es)"
+	if i == 1 #if the guesses left is one, do this
 		puts "guess left."
-	else
+	else #if the guesses left is anything else, do this.
 		puts "guesses left."
 	end
 end
-
 
 puts "Welcome to the Secret Number Game, created by Lucas."	#Welcomes the user
 print "Enter your name: "	#Requests the users name
