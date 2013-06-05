@@ -13,6 +13,15 @@ def guessMethod		#This method gets the user input and verifies it falls within a
 	end
 end
 
+def guesses?(i)
+	if i == 1
+		puts "guess left."
+	else
+		puts "guesses left."
+	end
+end
+
+
 puts "Welcome to the Secret Number Game, created by Lucas."	#Welcomes the user
 print "Enter your name: "	#Requests the users name
 name = gets.chomp 	#Gets the name and chomps it
@@ -27,9 +36,11 @@ while(i>0 && guess != secret_number) #Loops until the user is out of guesses & u
 	i -= 1 #Increments the number of guesses
 	guess = guessMethod #Calls the guess method and sets "guess" to the users guessed value
 	if guess > secret_number #If the guess is too high...
-		puts "Too high! You have #{i} guesses left."
+		print "Too high! You have #{i} "
+		guesses?(i)
 	elsif guess < secret_number #If the guess is too low...
-		puts "Too low! You have #{i} guesses left."
+		print "Too low! You have #{i} "
+		guesses?(i)
 	elsif guess == secret_number #If they guessed correctly...
 		puts "Congratulations #{name}, you guessed the Secret Number! You win!"
 	end
