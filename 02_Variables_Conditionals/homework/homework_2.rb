@@ -1,5 +1,4 @@
 #My first homework assignment is located at: http://celsian.tumblr.com/
-
 #--- HOMEWORK START ----
 def guessMethod		#This method gets the user input and verifies it falls within acceptable limits.
 	print "Enter your guess: "
@@ -48,4 +47,3 @@ if guess != secret_number #If case for failure to guess secret_number
 end
 #--- Output End ---
 #--- HOMEWORK END ----
-
