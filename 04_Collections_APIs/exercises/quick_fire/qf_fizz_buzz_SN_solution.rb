@@ -27,3 +27,5 @@ assert_equal fizzbuzz(5175), "FizzBuzz"
 1.upto(100) do |number|
   puts fizzbuzz(number)
 end
+
+# 1.upto(100) {|num| puts fizzbuzz(num)}

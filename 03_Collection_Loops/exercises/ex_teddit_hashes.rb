@@ -20,16 +20,14 @@ end
 stories = []
 
 while question("Do you want to add another story? (y/n)") != "n"
-title = question("enter title:")
-category = question("enter cat:")
-upvotes = question("current upvotes:").to_i
+	title = question("enter title:")
+	category = question("enter cat:")
+	upvotes = question("current upvotes:").to_i
 
-stories << {title: title, category: category, upvotes: upvotes}
+	stories << {title: title, category: category, upvotes: upvotes}
 end
 
-#The following line is the same as line 33-35, but on a single line.
-stories.each {|story| puts "Story: #{story[:title]} | Category: #{story[:category]} | Upvotes: #{story[:upvotes]}"}
-
-# stories.each do |story|
-# 	puts "Story: #{story[:title]} | Category: #{story[:category]} | Upvotes: #{story[:upvotes]}"
-# end
+#The following is the proper way to do this. Avoid single line as it becomes more complicated later.
+stories.each do |story|
+	puts "Story: #{story[:title]} | Category: #{story[:category]} | Upvotes: #{story[:upvotes]}"
+end
