@@ -38,8 +38,9 @@ end
 
 def calc_upvotes(category, upvotes)
 	if category == "gaming"
-		upvotes*1
+		return upvotes*1
 	end
+	upvotes
 end
 
 my_stories.each do |s|
