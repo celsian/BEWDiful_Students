@@ -37,7 +37,7 @@ end
 
 def show_story_board
   StoryBoard.stories.each do |story| #StoryBorad.stories returns an array of stories
-    show_message story 
+    show_message story
   end
 end
 
