@@ -15,8 +15,6 @@ end
 origin = question("Where are you starting?")
 destination = question("Where are you going?")
 <<<<<<< HEAD
-origin = CGI.escape("1444 Victoria Glen Escondido Ca 92025")
-destination = CGI.escape("2711 Sunset Hills Escondido Ca 92025")
 
 =======
 >>>>>>> upstream/master

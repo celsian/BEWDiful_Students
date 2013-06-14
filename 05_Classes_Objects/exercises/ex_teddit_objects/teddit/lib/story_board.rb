@@ -5,7 +5,6 @@ class StoryBoard
 
 	def self.add_story story
 		@@story << story
-	
 	end
 
 	def self.stories
