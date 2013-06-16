@@ -6,12 +6,22 @@ require_relative "lib/post"
 
 again = "y"
 
-while again == "y"
-	puts "Welcome to the Reddit Popularity Checker"
-	puts "Telling you where to go when you want to get seen..."
+	puts "Welcome to the Reddit Popularity Checker! This app"
+	puts "finds the top 5 words and average upvotes in the"
+	puts "top 100 posts in the subreddit of your choice."
 	puts "----------------------------------------------------"
-	print "What subreddit are you interested in? "
+
+while again == "y"
+	print "What subreddit are you interested in? (exit! to quit): "
 	subreddit = gets.chomp.downcase
+
+	if subreddit == "exit!"
+		puts "Good bye!"
+		Process.exit!
+	else
+		subreddit = subreddit.gsub(/[^0-9a-z]/i, '')
+	end
+
 	posts = 100
 
 	RemoteSource.add_posts(subreddit, posts) #This line calls the remote source method

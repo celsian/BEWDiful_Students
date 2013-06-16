@@ -1,3 +1,7 @@
+#Classes Post and Posts
+#Post creates a post object with the title and upvotes of the reddit post.
+#Posts keeps an array of post objects and performs functions on the class array
+
 class Post
 
 	def initialize(title, upvotes)
@@ -53,11 +57,11 @@ class Posts
 		#Created a word blacklist to avoid lame 'top' words like the and to.
 		word_blacklist = ["was", "more", "your","here","irst","like","think", "about", "our", "had", "when", "has", "all", "how", "why", "ever", "not", "this", "with", "from", "that", "been", "just", "some", "what", "have", "time", "made", "most", "they", "the", "for", "and", "you",
 			"come", "get", "give", "go", "keep", "let", "make", "put", "seem", "take", "be", "do", "have", "say", "see", "send", "may", "will", "about", "
-			across", "after", "against", "among", "at", "before", "between", "by", "down", "from", "in", "off", "on", "over", "through", "to", "
-			under", "up", "with", "as", "for", "of", "till", "than", "a", "the", "all", "any", "every", "no", "other", "some", "such", "that", "
-			this", "i", "he", "you", "who", "and", "because", "but", "or", "if", "though", "while", "how", "when", "where", "why", "again", "
+			across", "after", "against", "among", "before", "between", "down", "from", "off", "over", "through", "
+			under", "up", "with", "as", "for", "till", "than", "a", "the", "all", "any", "every", "no", "other", "some", "such", "that", "
+			this", "you", "who", "and", "because", "but", "though", "while", "how", "when", "where", "why", "again", "
 			ever", "far", "forward", "here", "near", "now", "out", "still", "then", "there", "together", "well", "almost", "enough", "even", "
-			little", "much", "not", "only", "quite", "so", "very", "tomorrow", "yesterday", "north", "south", "east", "west","please","yes",
+			little", "much", "not", "only", "quite", "so", "very", "please","yes",
 			"first", "last", "are", "should", "would", "thing", "know", "their", "can", "done", "everyone", "don"]
 
 		words.map do |word|
@@ -73,7 +77,7 @@ class Posts
 		word_value_array = word_hash.values.sort #Sorts the word counts from least to most
 
 		(word_value_array.length-1).downto(word_value_array.length-5) do |pos| #Goes through the top word values
-			final_word_list << "#{word_hash.key(word_value_array[pos])} #{word_value_array[pos]}".capitalize #Calls the key associated with the current word count and pushes that word into the final word array with the count after it capitalizes it
+			final_word_list << "#{word_hash.key(word_value_array[pos])} (#{word_value_array[pos]})".capitalize #Calls the key associated with the current word count and pushes that word into the final word array with the count after it capitalizes it
 			word_hash[word_hash.key(word_value_array[pos])] = 0 #Clears the key value in case of multiple keys with the same value.
 		end
 

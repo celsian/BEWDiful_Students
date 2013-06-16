@@ -21,8 +21,8 @@ class RemoteSource
 			end
 		else
 			puts ""
-			puts "ERROR: Invalid Subreddit or Service is currently unavailable."
-			puts "ERROR: Please try again"
+			puts "ERROR: Invalid subreddit or service is currently unavailable."
+			puts "ERROR: Please try again..."
 			puts ""
 			# Process.exit!
 
