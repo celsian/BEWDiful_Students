@@ -4,45 +4,45 @@
 
 class Post
 
-	def initialize(title, upvotes)
+	def initialize(title, upvotes) #initialize method for a post object
 		@title = title
-		@upvotes = upvotes
+		@upvotes = upvotes.to_i
 	end
 
-	def to_s
+	def to_s #method for testing purpose which allows me to write 'puts (post object)'
 		"Title: #{@title} | Upvotes: #{@channel}" 
 	end
 
-	def get_upvotes
+	def get_upvotes #returns upvotes value
 		@upvotes
 	end
 
-	def get_title
+	def get_title #returns title string
 		@title
 	end
 end
 
-class Posts
+class Posts #Class that stores the post objects in a class array
 	@@posts = []
 
-	def self.add_post post
+	def self.add_post post #add 'post' to the class array '@@posts'
 		@@posts << post
 	end
 
-	def self.posts
+	def self.posts #Returns the class array '@@posts'
 		@@posts
 	end
 
-	def self.clear
+	def self.clear #Clears the class array for additional requests
 		@@posts = []
 	end
 
-	def self.upvote_avg
+	def self.upvote_avg posts #Calcs the average upvotes for top 'posts' posts
 		avg_upvotes = 0
-		@@posts.map do |post|
+		@@posts.each do |post| #For each post object in posts add the upvotes together.
 			avg_upvotes += post.get_upvotes
 		end
-		avg_upvotes
+		avg_upvotes/posts #Divide total avg_upvotes by 'posts' and return.
 	end
 
 	def self.word_avg
@@ -50,7 +50,7 @@ class Posts
 		words = []	#makes the word array
 		word_hash = {}	#Makes the word hash
 
-		@@posts.map do |post| #Goes through every posts title, adds each word from the title to the words array
+		@@posts.each do |post| #Goes through every posts title, adds each word from the title to the words array
 			words += post.get_title.split(/\W+/)
 		end
 
@@ -64,7 +64,7 @@ class Posts
 			little", "much", "not", "only", "quite", "so", "very", "please","yes",
 			"first", "last", "are", "should", "would", "thing", "know", "their", "can", "done", "everyone", "don"]
 
-		words.map do |word|
+		words.each do |word|
 			if !word_blacklist.include?(word) && word.length > 2
 				if word_hash.has_key?(word)
 					word_hash[word] += 1 #Find word already on word_hash and add 1 to the count
