@@ -1,5 +1,8 @@
-require_relative "remote_source"
-require_relative "post"
+#The ui class for user input and program output
+
+require_relative 'remote_source'
+require_relative 'post'
+require_relative 'posts'
 
 class Ui
 	def self.main
