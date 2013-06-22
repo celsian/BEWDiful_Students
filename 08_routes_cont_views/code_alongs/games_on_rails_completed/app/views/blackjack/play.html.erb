@@ -1,0 +1,16 @@
+<H1>YOU'RE REALLY INTO IT NOW!!!</H1>
+Cards Left: <%= @play_deck.size %><br>  
+<BR>
+Dealer's Hand: <% @dealer_hand.each do |x| %><%= "#{x} | " %><% end %> Total: <%= @dealer_total %><BR>
+User's Hand: <% @user_hand.each do |x| %><%= "#{x} | " %><% end %> Total: <%= @user_total %><BR>
+<BR>
+<B><%= link_to "HIT", bj_hit_path %> | DOUBLE D'S | SPLIT | STAY</B><BR>
+<BR>
+<% @play_deck.cards.each do |x| %>
+  <%= "#{x}" %>
+  <% if x.value == "K" %>
+    <br>
+    <% else %>
+    <%= " |" %>
+    <% end %>
+<% end %>

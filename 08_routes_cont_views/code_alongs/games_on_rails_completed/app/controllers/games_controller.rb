@@ -32,25 +32,59 @@ The game is often used as a choosing method in a way similar to coin flipping, d
    end
 
    def rock_paper_scissors
+   end
+
+   def rock_paper_scissors_throw
+    @user_throw = params[:throw]
+    @app_throw = ["Boulder", "Pliers", "TPS Report"].sample
+    @output = "NOTHING"
+    if @user_throw == @app_throw
+      @output = "Tie!"
+    end
+    if @user_throw == "Boulder"
+      if @app_throw == "Pliers"
+        @output = "Win!"
+      elsif @app_throw == "TPS Report"
+        @output = "Lose!"
+      end
+    end
+    if @user_throw == "Pliers"
+      if @app_throw == "TPS Report"
+        @output = "Win!"
+      elsif @app_throw == "Boulder"
+        @output = "Lose!"
+      end
+    end
+    if @user_throw == "TPS Report"
+      if @app_throw == "Boulder"
+        @output = "Win!"
+      elsif @app_throw == "Pliers"
+        @output = "Lose!"
+      end
+    end
 
    end
 
-   def rock_paper_scissors_play
-    rps = {
-      "rock" => "scissors",
-      "scissor" => "paper",
-      "paper" => "rock"
-    }
-    @your_throw = params[:throw]
-    @rails_throw = ["rock", "paper", "scissors"].sample
-    if @your_throw == @rails_throw
-      @status = "Tie!"
-    elsif rps[@your_throw] == @rails_throw
-      @status = "Win"
-    else
-      @status = "Lose"
-    end
-  end
+  #  def rock_paper_scissors
+
+  #  end
+
+  #  def rock_paper_scissors_play
+  #   rps = {
+  #     "rock" => "scissors",
+  #     "scissor" => "paper",
+  #     "paper" => "rock"
+  #   }
+  #   @your_throw = params[:throw]
+  #   @rails_throw = ["rock", "paper", "scissors"].sample
+  #   if @your_throw == @rails_throw
+  #     @status = "Tie!"
+  #   elsif rps[@your_throw] == @rails_throw
+  #     @status = "Win"
+  #   else
+  #     @status = "Lose"
+  #   end
+  # end
 
   def secret_number_play
     @guess = params[:guess].to_i

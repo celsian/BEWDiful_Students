@@ -1,0 +1,8 @@
+<P>
+  <H3>You threw <%= @user_throw %></H3>
+  <H3>App threw <%= @app_throw %></H3>
+  <H1>You <%= @output %></H1>
+  <br>
+  Play again?<br>
+  <form method="LINK" action = "<%= rps_throw_path('Boulder') %>"><input type="submit" value="Boulder"></form><form method="LINK" action = "<%= rps_throw_path('Pliers') %>"><input type="submit" value="Pliers"></form><form method="LINK" action = "<%= rps_throw_path('TPS Report') %>"><input type="submit" value="TPS Report"></form>
+</P>
