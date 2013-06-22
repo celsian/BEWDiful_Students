@@ -10,7 +10,8 @@ GamingApp::Application.routes.draw do
 
   get '/blackjack', to: 'blackjack#index'
   get '/blackjack/play', to: 'blackjack#play', as: "bj"
-  get '/blackjack/hit', to: 'blackjack#hit', as: "bj_hit" 
+  get '/blackjack/hit', to: 'blackjack#hit', as: "bj_hit"
+  get '/blackjack/stay', to: 'blackjack#stay', as: "bj_stay"
 
 
 

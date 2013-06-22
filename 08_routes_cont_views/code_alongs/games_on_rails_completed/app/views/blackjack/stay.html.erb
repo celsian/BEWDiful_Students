@@ -4,9 +4,5 @@ Cards Left: <%= @play_deck.size %><br>
 Dealer's Hand: <% @dealer_hand.each do |x| %><%= "#{x} | " %><% end %> Total: <%= @dealer_total %><BR>
 User's Hand: <% @user_hand.each do |x| %><%= "#{x} | " %><% end %> Total: <%= @user_total %><BR>
 <BR>
-  <% if @user_total <= 21 %>
-<B><%= link_to "HIT", bj_hit_path %> | DOUBLE D'S | SPLIT | <%= link_to "STAY", bj_stay_path %></B><BR>
-  <% else %>
-<B><H1>YOU LOSE, EZ EZ</h1></B><br>
+  <B><H1><%= "#{@result}" %></H1></B><BR>
 <B><%= link_to "Play Again", bj_path %></B>
-  <% end %>
