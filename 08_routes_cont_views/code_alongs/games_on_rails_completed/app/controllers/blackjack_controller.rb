@@ -74,39 +74,71 @@ class BlackjackController < ApplicationController
   end
 
   def player
-    if @play_deck.size < 15
-      @play_deck = Deck.new
-      @play_deck.shuffle
+    new_bet params[:new_bet]
+    if !params[:new_bet]
+      if @play_deck.size < 15
+        @play_deck = Deck.new
+        @play_deck.shuffle
+      end
+      
+      if @bank <= 0
+        clear_hands
+        @results = "OUT OF MONEY LOSER!!!"
+      else
+        if @bank < @bet
+          @userbet = @bank
+          @bet = @bank
+        end
+        
+        clear_hands
+        
+        bet
+        deal
+        calcs "deal"
+      end
     end
-    
-    @user_hand = []
-    @dealer_hand = []
-    
-    bet
-    deal
-    calcs "deal"
   end
 
   def hit
-    hit_hand @user_hand
-    calcs "hit"
+    new_bet params[:new_bet]
+    if !params[:new_bet] #Need this to avoid re-running calcs if it's a new_bet
+      hit_hand @user_hand
+      calcs "hit"
+    end
   end
 
   def double_down
-    @bank -= @bet
-    @bet += @bet
-    hit
-    if @game_over == 0
-      stay
+    new_bet params[:new_bet]
+    if !params[:new_bet] #Need this to avoid re-running calcs if it's a new_bet
+      @bank -= @bet
+      @bet += @bet
+      hit
+      if @game_over == 0
+        stay
+      end
     end
   end
 
   def stay
-    while (total @dealer_hand) < 17
-      hit_hand @dealer_hand
+    new_bet params[:new_bet]
+    if !params[:new_bet] #Need this to avoid re-running calcs if it's a new_bet
+      while (total @dealer_hand) < 17
+        hit_hand @dealer_hand
+      end
+      calcs "stay"
     end
+  end
 
-    calcs "stay"
+  def new_bet pass_in
+    if pass_in
+      if pass_in[:new_bet].to_f >= 5 && pass_in[:new_bet].to_f <= 200
+        @userbet = pass_in[:new_bet].to_f
+        redirect_to bj_path
+      else
+        clear_hands
+        @results = "Invalid Bet, Try again..."
+      end
+    end
   end
 
   def deal
@@ -118,6 +150,11 @@ class BlackjackController < ApplicationController
 
   def hit_hand hand
     hand << @play_deck.cards.shift
+  end
+
+  def clear_hands
+    @user_hand = []
+    @dealer_hand = []
   end
 
   def bet

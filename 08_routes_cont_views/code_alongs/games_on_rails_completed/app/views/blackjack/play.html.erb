@@ -26,5 +26,11 @@ You have: <B><%= @user_total %></B><BR>
   <B><%= link_to "HIT", bj_act_path("hit") %> | <% if @user_hand.length == 2 %><%= link_to "DOUBLE D'S!", bj_act_path("double") %><% else %> DOUBLE D'S! <% end %> | SPLIT | <%= link_to "STAY", bj_act_path("stay") %></B><BR>
 <% elsif @game_over == 1 %>
   <B><H1><%= "#{@results}" %></h1></B><br>
+  <i>Minimum Bet: 5, Maximum Bet: 200</i> | 
   <B><%= link_to "Play Again", bj_path %></B>
+  <%= form_for :new_bet, method: 'get' do |f| %>
+    <%= f.label "Change Bet:" %>
+    <%= f.text_field :new_bet %>
+    <%= f.submit %>
+  <% end %>
 <% end %>
