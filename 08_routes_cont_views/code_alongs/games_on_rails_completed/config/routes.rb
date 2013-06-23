@@ -9,9 +9,11 @@ GamingApp::Application.routes.draw do
   get '/games/rock_paper_scissors/:throw', to: 'games#rock_paper_scissors_throw', as: "rps_throw"
 
   get '/blackjack', to: 'blackjack#index'
-  get '/blackjack/play', to: 'blackjack#play', as: "bj"
-  get '/blackjack/hit', to: 'blackjack#hit', as: "bj_hit"
-  get '/blackjack/stay', to: 'blackjack#stay', as: "bj_stay"
+  get '/blackjack/play/', to: 'blackjack#play', as: "bj"
+  get '/blackjack/play/:act', to: 'blackjack#play', as: "bj_act"
+
+  # get '/blackjack/hit', to: 'blackjack#hit', as: "bj_hit"
+  # get '/blackjack/stay', to: 'blackjack#stay', as: "bj_stay"
 
 
 

@@ -3,7 +3,7 @@ class BlackjackController < ApplicationController
    before_filter :load_all
    after_filter :save_all
 
-  def load_all
+  def load_all #for saving values between sessions
     if session[:deck]
       @play_deck = Marshal.load(session[:deck]) 
     end
@@ -13,46 +13,100 @@ class BlackjackController < ApplicationController
     if session[:dealer_hand]
       @dealer_hand = Marshal.load(session[:dealer_hand]) 
     end
+    if session[:bank]
+      @bank = Marshal.load(session[:bank]) 
+    end
+    if session[:bet]
+      @bet = Marshal.load(session[:bet]) 
+    end
+    if session[:userbet]
+      @userbet = Marshal.load(session[:userbet]) 
+    end
+    if session[:game_over]
+      @game_over = Marshal.load(session[:game_over]) 
+    end
       @play_deck ||= Deck.new
       @play_deck.shuffle
       @user_hand ||= []
       @dealer_hand ||= []
+      @bank ||= 0
+      @bet ||= 0
+      @userbet ||= 0
+      @game_over ||= 0
   end
 
-  def save_all
+  def save_all #for saving values between sessions
     session[:deck] = Marshal.dump(@play_deck)
     session[:user_hand] = Marshal.dump(@user_hand)
     session[:dealer_hand] = Marshal.dump(@dealer_hand)
+    session[:bank] = Marshal.dump(@bank)
+    session[:bet] = Marshal.dump(@bet)
+    session[:userbet] = Marshal.dump(@userbet)
+    session[:game_over] = Marshal.dump(@game_over)
   end
 
   def index
-    @bank = 1000
-    @bet = 5
+    @bank = 1000.00
+    @userbet = 5.00
+    @bet = 5.00
+    @play_deck = Deck.new
+    @play_deck.shuffle
+    @game_over = 0
   end
 
-  def calcs
+  def calcs state
     @user_total = total @user_hand
     @dealer_total = total @dealer_hand
-    @result = game_over?
+    @results = game_over? state
   end
 
   def play
+    @bet = @userbet
+    if params[:act] == "hit"
+      hit
+    elsif params[:act] == "stay"
+      stay
+    elsif params[:act] == "double"
+      double_down
+    else
+      player
+    end
+  end
+
+  def player
     if @play_deck.size < 15
       @play_deck = Deck.new
       @play_deck.shuffle
     end
-
+    
     @user_hand = []
     @dealer_hand = []
-
+    
+    bet
     deal
-    calcs
+    calcs "deal"
   end
 
   def hit
     hit_hand @user_hand
+    calcs "hit"
+  end
 
-    calcs
+  def double_down
+    @bank -= @bet
+    @bet += @bet
+    hit
+    if @game_over == 0
+      stay
+    end
+  end
+
+  def stay
+    while (total @dealer_hand) < 17
+      hit_hand @dealer_hand
+    end
+
+    calcs "stay"
   end
 
   def deal
@@ -66,23 +120,61 @@ class BlackjackController < ApplicationController
     hand << @play_deck.cards.shift
   end
 
-  def stay
-    while (total @dealer_hand) < 17
-      hit_hand @dealer_hand
-    end
-
-    calcs
+  def bet
+    @bank -= @bet
   end
 
-  def game_over?
-    if @user_total < @dealer_total && @dealer_total <= 21
-      "YOU LOSE, EZ EZ"
-    elsif @user_total > @dealer_total || @dealer_total > 21
-      "YOU WIN LOL!!"
-    elsif @user_total == @dealer_total
-      "OMG TIE UNPOSSIBBBBRUUUU!!!!!"
+  def game_over? state
+    if state == "deal"
+      if @user_total == 21 && @dealer_total == 21
+        @bank += @bet
+        return result "tie"
+      elsif @user_total == 21
+        @bank += (@bet*2.5)
+        return result "win"
+      elsif @dealer_total == 21
+        return result "lose"
+      else
+        @game_over = 0
+      end
     end
+
+    if state == "hit"
+      if @user_total > 21
+        return result "lose"
+      else
+        @game_over = 0
+      end
+    end
+
+    if state == "stay"
+      if @dealer_total > 21 || @user_total > @dealer_total
+        @bank += (@bet*2)
+        return result "win"
+      elsif @dealer_total > @user_total
+        return result "lose"
+      elsif @dealer_total == @user_total
+        @bank += @bet
+        return result "tie"
+      else
+        @game_over = 0
+      end
+    end
+
+    def result state
+      @game_over = 1
+      if state == "win"
+        return "YOU WIN LOL!!"
+      elsif state == "lose"
+        return "YOU LOSE, EZ EZ"
+      elsif state == "tie"
+        return "OMG TIE UNPOSSIBBBBRUUUU!!!!!"
+      end
+    end
+
   end
+
+
 
   def total array_hand
     value_array = []

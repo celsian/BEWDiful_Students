@@ -1,17 +1,30 @@
-<H1>YOU'RE REALLY INTO IT NOW!!!</H1>
-Cards Left: <%= @play_deck.size %><br>  
+<H1>SOME REAL LIFE BLACKJACK!</H1>
+Cards left: <%= "#{'%.2f' % ((@play_deck.size.to_f/52)*100)}%" %> | Bank: <%= "#{'%.2f' % @bank}" %> | Bet: <%= "#{'%.2f' % @bet}" %><br> 
 <BR>
-Dealer's Hand: <% @dealer_hand.each do |x| %><%= "#{x} | " %><% end %> Total: <%= @dealer_total %><BR>
-User's Hand: <% @user_hand.each do |x| %><%= "#{x} | " %><% end %> Total: <%= @user_total %><BR>
+
+Dealer's Hand:
+<% if params[:act] == "stay" || @dealer_total == 21 || @user_total == 21 && @user_hand.length == 2 || @game_over == 1 %>
+  <ul>
+    <% @dealer_hand.each do |x| %><li><%= "#{x}" %></li><% end %>
+  </ul>
+    Dealer has: <B><%= @dealer_total %></B><BR>
+<% else %>
+  <ul>
+    <li><%= "?? Hidden Card ??" %></li>
+    <li><%= "#{@dealer_hand[1]}" %></li>
+  </ul>
+  Dealer has: <B><%= Card.value(@dealer_hand[1].value) %></B><BR>
+<% end %>
+
 <BR>
-  <% if @dealer_total < 21 && @user_total < 21 %>
-<B><%= link_to "HIT", bj_hit_path %> | DOUBLE D'S | SPLIT | <%= link_to "STAY", bj_stay_path %></B><BR>
-  <% else %>
-<B><H1><%= @result %></h1></B><br>
-<B><%= link_to "Play Again", bj_path %></B>
-  <% end %>
+User's Hand:
+<ul><% @user_hand.each do |x| %><li><%= "#{x}" %></li><% end %></ul>
+You have: <B><%= @user_total %></B><BR>
 <BR>
-<BR>
-<% @play_deck.cards.each do |card| %>
-<%= "#{card}, " %>
+
+<% if @game_over == 0 %>
+  <B><%= link_to "HIT", bj_act_path("hit") %> | <% if @user_hand.length == 2 %><%= link_to "DOUBLE D'S!", bj_act_path("double") %><% else %> DOUBLE D'S! <% end %> | SPLIT | <%= link_to "STAY", bj_act_path("stay") %></B><BR>
+<% elsif @game_over == 1 %>
+  <B><H1><%= "#{@results}" %></h1></B><br>
+  <B><%= link_to "Play Again", bj_path %></B>
 <% end %>
