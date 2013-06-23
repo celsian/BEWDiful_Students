@@ -1,8 +1,0 @@
-<H1>YOU'RE REALLY INTO IT NOW!!!</H1>
-Cards Left: <%= @play_deck.size %><br>  
-<BR>
-Dealer's Hand: <% @dealer_hand.each do |x| %><%= "#{x} | " %><% end %> Total: <%= @dealer_total %><BR>
-User's Hand: <% @user_hand.each do |x| %><%= "#{x} | " %><% end %> Total: <%= @user_total %><BR>
-<BR>
-  <B><H1><%= "#{@result}" %></H1></B><BR>
-<B><%= link_to "Play Again", bj_path %></B>
