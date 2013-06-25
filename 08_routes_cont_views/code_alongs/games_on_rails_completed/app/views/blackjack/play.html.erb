@@ -1,6 +1,5 @@
-<BODY BGCOLOR="#016A07" vlink="#FF0000" alink="FF0000"><H1>SOME REAL LIFE BLACKJACK!</H1>
-Cards left: <%= "#{'%.2f' % ((@play_deck.size.to_f/52)*100)}%" %> | Bank: <%= "#{'%.2f' % @bank}" %> | Bet: <%= "#{'%.2f' % @bet}" %><br> 
-<BR>
+<BODY BGCOLOR="#016A07" vlink="#FF0000" alink="FF0000"><h1 class=b>SOME REAL LIFE BLACKJACK!</h1><BR>
+<h4 class=a>Cards left: <%= "#{'%.2f' % ((@play_deck.size.to_f/52)*100)}%" %> | Bank: <%= "#{'%.2f' % @bank}" %> | Bet: <%= "#{'%.2f' % @bet}" %></h3>
 <font color="white" size="4">
 <% if params[:act] == "stay" || @dealer_total == 21 || @user_total == 21 && @user_hand.length == 2 || @game_over == 1 %>
   <ul type="square">
@@ -11,7 +10,7 @@ Cards left: <%= "#{'%.2f' % ((@play_deck.size.to_f/52)*100)}%" %> | Bank: <%= "#
   <ul type="square">
     <li><%= "#{@dealer_hand[0]}" %> <%= "(Hidden)" %></li>
   </ul>
-  Dealer's Total: <B><%= Card.value(@dealer_hand[1].value) %></B>
+  Dealer's Total: <B><%= Card.value(@dealer_hand[0].value) %></B>
 <% end %>
 
 <BR>
@@ -22,15 +21,14 @@ User's Total: <B><%= @user_total %></B><BR>
 </font>
 <% if @game_over == 0 %>
   <br>
-  <%= link_to "HIT", bj_act_path("hit") %> <b>|</b> <% if @user_hand.length == 2 %><%= link_to "DOUBLE D'S!", bj_act_path("double") %><% else %> <font color="#7C7C7C"><i>DOUBLE D'S!</i></font> <% end %> <b>|</b> SPLIT <b>|</b> <%= link_to "STAY", bj_act_path("stay") %><BR>
+  <h4 class=b><%= link_to "HIT", bj_act_path("hit") %> <b>|</b> <% if @user_hand.length == 2 %><%= link_to "DOUBLE", bj_act_path("double") %><% else %> <font color="#7C7C7C"><i>DOUBLE</i></font> <% end %> <b>|</b> SPLIT <b>|</b> <%= link_to "STAY", bj_act_path("stay") %></h4><BR><BR>
 <% elsif @game_over == 1 %>
-  <B><H1><%= "#{@results}" %></h1></B><br>
-  <i>Minimum Bet: 5, Maximum Bet: 200</i> | 
-  <B><%= link_to "Play Again", bj_path %></B>
+  <B><br><H1 class=a><%= "#{@results}" %></h1></B><BR><BR>
+  <i><h4 class=a>Minimum Bet: 5, Maximum Bet: 200</i> | <B><h4 class=b><%= link_to "Play Again", bj_path %></B><h4 class=a>
   <%= form_for :new_bet, method: 'get' do |f| %>
     <%= f.label "Change Bet:" %>
     <%= f.text_field :new_bet %>
     <%= f.submit %>
   <% end %>
 <% end %>
-</body>
+</h4></body>

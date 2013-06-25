@@ -6,7 +6,14 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<style>
+h1.a {color: white; text-shadow: black 0.1em 0.1em 0.2em; display:inline} 
+h4.a {color: black; text-shadow: gray 0.1em 0.1em 0.2em; display:inline}
+h4.b {text-shadow: black 0.1em 0.1em 0.2em; display:inline}
+h4.c {text-shadow: white 0.1em 0.1em 0.2em; display:inline}
+h1.b {color: black; text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; display:inline}
+</style>
+<BODY BGCOLOR="#016A07" vlink="#FF0000" alink="FF0000">
 
 <%= yield %>
 
