@@ -1,24 +1,35 @@
 <BODY BGCOLOR="#016A07" vlink="#FF0000" alink="FF0000"><h1 class=b>SOME REAL LIFE BLACKJACK!</h1><BR>
 <h4 class=a>Cards left: <%= "#{'%.2f' % ((@play_deck.size.to_f/52)*100)}%" %> | Bank: <%= "#{'%.2f' % @bank}" %> | Bet: <%= "#{'%.2f' % @bet}" %></h3>
-<font color="white" size="4">
+
+<h4 class=dealer_card>
 <% if params[:act] == "stay" || @dealer_total == 21 || @user_total == 21 && @user_hand.length == 2 || @game_over == 1 %>
   <ul type="square">
     <li><% @dealer_hand.each do |x| %><%= "#{x} " %><% end %></li>
   </ul>
   Dealer's Total: <B><%= @dealer_total %></B>
+
 <% else %>
+
   <ul type="square">
     <li><%= "#{@dealer_hand[0]}" %> <%= "(Hidden)" %></li>
   </ul>
   Dealer's Total: <B><%= Card.value(@dealer_hand[0].value) %></B>
+
 <% end %>
+</h4>
 
 <BR>
-</font>
-<font color="#FFFF00" size="4">
-<ul type="square"><li><% @user_hand.each do |x| %><%= "#{x} " %><% end %></li></ul>
-User's Total: <B><%= @user_total %></B><BR>
-</font>
+
+<h4 class=user_card>
+<ul type="square">
+  <li><% @user_hand.each do |x| %><%= "#{x} " %><% end %></li>
+</ul>
+User's Total: <B><%= @user_total %></B>
+</h4>
+
+<BR>
+
+
 <% if @game_over == 0 %>
   <br>
   <h4 class=b><%= link_to "HIT", bj_act_path("hit") %> <b>|</b> <% if @user_hand.length == 2 %><%= link_to "DOUBLE", bj_act_path("double") %><% else %> <font color="#7C7C7C"><i>DOUBLE</i></font> <% end %> <b>|</b> SPLIT <b>|</b> <%= link_to "STAY", bj_act_path("stay") %></h4><BR><BR>
