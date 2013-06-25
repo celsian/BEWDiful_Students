@@ -238,7 +238,7 @@ end
     attr_reader :value, :suit
     #Hashes for Values and Suits
     VALUES = {"A" => 11, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9, "10" => 10, "J" => 10, "Q" => 10, "K" => 10}
-    SUITS = {"S" => "Spades", "H" => "Hearts", "C" => "Clubs", "D" => "Diamonds"}
+    SUITS = {"S" => "♠", "H" => "♥", "C" => "♣", "D" => "♦"}
 
     def initialize(value, suit) #For initializing a card object
       @value = value
@@ -262,7 +262,7 @@ end
     end
 
     def to_s #For printing cards prettily.
-      "#{@value} of #{SUITS[@suit]}'s"
+      "#{@value}#{SUITS[@suit]}"
     end
   end
 
