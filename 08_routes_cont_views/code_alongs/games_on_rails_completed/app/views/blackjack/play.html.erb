@@ -29,7 +29,6 @@ User's Total: <B><%= @user_total %></B>
 
 <BR>
 
-
 <% if @game_over == 0 %>
   <br>
   <h4 class=b><%= link_to "HIT", bj_act_path("hit") %> <b>|</b> <% if @user_hand.length == 2 %><%= link_to "DOUBLE", bj_act_path("double") %><% else %> <font color="#7C7C7C"><i>DOUBLE</i></font> <% end %> <b>|</b> SPLIT <b>|</b> <%= link_to "STAY", bj_act_path("stay") %></h4><BR><BR>
@@ -42,4 +41,5 @@ User's Total: <B><%= @user_total %></B>
     <%= f.submit %>
   <% end %>
 <% end %>
-</h4></body>
+</h4>
+</body>
