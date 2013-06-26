@@ -1,0 +1,9 @@
+<H2>Movies and stuff.</H2>
+
+<ul>
+<% Movies.all.each do |x| %>
+<li><%= x.title %> | <%= x.description %> | <%= x.year_released %> </li>
+<% end %>
+</ul>
+
+<%= link_to "Main Movie Page", movies_main_path %>
