@@ -110,13 +110,23 @@ class BlackjackController < ApplicationController
   def double_down
     new_bet params[:new_bet]
     if !params[:new_bet] #Need this to avoid re-running calcs if it's a new_bet
-      @bank -= @bet
-      @bet += @bet
+      if @bank < @bet
+        @bet += @bank
+        @bank -= @bank
+      else
+        @bank -= @bet
+        @bet += @bet
+      end
+
       hit
       if @game_over == 0
         stay
       end
     end
+  end
+
+  def split
+
   end
 
   def stay
