@@ -1,0 +1,93 @@
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateShirts (20130626030900)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "shirts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "size" varchar(255), "name" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130626030900"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddImageToShirts (20130626032311)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.8ms)[0m  [1mALTER TABLE "shirts" ADD "image" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130626032311"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.9ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Meta Shirt showing Warning about inability to load shirt"], ["image", "rushed_to_market.png"], ["name", "Rushed to Market"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Darwin with paper cutouts of evolution"], ["image", "darwins_delight.png"], ["name", "Darwin's Delight"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Button Masher's Manifesto"], ["image", "victory_through_chaos.png"], ["name", "Victory through Chaos"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Gaming consoles as Star Wars battle vehicles"], ["image", "console_wars.png"], ["name", "Console Wars"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Lightsabers charging at an outlet"], ["image", "downtime.png"], ["name", "Downtime"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Solo and Greedo in 8-bit emulating text based game"], ["image", "shoot_first.png"], ["name", "Shoot First"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Stick Figure guy has enough"], ["image", "i_quit.png"], ["name", "I Quit!"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Vader makes eggs for a young Luke and Leia"], ["image", "family_breakfast.png"], ["name", "Family Breakfast"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Pirate turns to digital piracy"], ["image", "music_pirate.png"], ["name", "Music Pirate"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Ninja Turtle as famous painter"], ["image", "leonardo.png"], ["name", "Leonardo"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Flying cup of coffee"], ["image", "my_morning_sidekick.png"], ["name", "My Morning Sidekick"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Storm Trooper enjoying a casual Friday"], ["image", "casual_friday.png"], ["name", "Casual Friday"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Portals used to clean spills"], ["image", "wet_slippery_when.png"], ["name", "WET||SLIPPERY WHEN"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Waldo Hiding from some Ninjas!"], ["image", "blending_in.png"], ["name", "Blending In"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Cookie monster had one to many at the milk bar"], ["image", "the_binge.png"], ["name", "The Binge"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Training using Bacon as a motivator"], ["image", "motivation.png"], ["name", "Motivation"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Phoenix, Cat, and Zombie at longevity competition"], ["image", "winners_at_life.png"], ["name", "Winners at Life"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Gandalf as a queue manager"], ["image", "halfing_height_requirement.png"], ["name", "Halfling Height Requirement"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Sad Polar Bear is sad"], ["image", "the_last_one.png"], ["name", "The Last One"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "shirts" ("created_at", "description", "image", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00], ["description", "Panda as a Pirate"], ["image", "panda_pirate.png"], ["name", "Panda Pirate"], ["updated_at", Wed, 26 Jun 2013 03:25:43 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.9ms)[0m  INSERT INTO "shirts" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Wed, 26 Jun 2013 03:48:26 UTC +00:00], ["description", "Basically the coolest style"], ["name", "V Neck"], ["updated_at", Wed, 26 Jun 2013 03:48:26 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mShirt Load (0.2ms)[0m  SELECT "shirts".* FROM "shirts" ORDER BY "shirts"."id" ASC LIMIT 1
+  [1m[36mShirt Load (0.3ms)[0m  [1mSELECT "shirts".* FROM "shirts" WHERE "shirts"."id" = ? LIMIT 1[0m  [["id", "V-Neck"]]
+  [1m[35mShirt Load (0.1ms)[0m  SELECT "shirts".* FROM "shirts" WHERE "shirts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mShirt Load (0.2ms)[0m  [1mSELECT "shirts".* FROM "shirts" WHERE "shirts"."id" = ? LIMIT 1[0m  [["id", 21]]
+  [1m[35mShirt Load (0.1ms)[0m  SELECT "shirts".* FROM "shirts" WHERE "shirts"."id" = ? LIMIT 1  [["id", 21]]
+  [1m[36mShirt Load (1.4ms)[0m  [1mSELECT "shirts".* FROM "shirts" WHERE "shirts"."id" = ? LIMIT 1[0m  [["id", 21]]
+  [1m[35mShirt Load (0.2ms)[0m  SELECT "shirts".* FROM "shirts" WHERE "shirts"."id" = ? LIMIT 1  [["id", 21]]
+  [1m[36mShirt Load (0.2ms)[0m  [1mSELECT "shirts".* FROM "shirts" WHERE "shirts"."id" = ? LIMIT 1[0m  [["id", 21]]
+  [1m[35mShirt Load (0.2ms)[0m  SELECT "shirts".* FROM "shirts" WHERE "shirts"."id" = ? LIMIT 1  [["id", 21]]
+  [1m[36mShirt Load (0.2ms)[0m  [1mSELECT "shirts".* FROM "shirts" WHERE "shirts"."name" = 'The' LIMIT 1[0m
+  [1m[35mShirt Load (0.2ms)[0m  SELECT "shirts".* FROM "shirts" WHERE "shirts"."name" = 'The Last One' LIMIT 1
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
