@@ -126,7 +126,11 @@ class BlackjackController < ApplicationController
   end
 
   def split
-
+    new_bet params[:new_bet]
+      if !params[:new_bet]
+        
+      end
+    end
   end
 
   def stay
