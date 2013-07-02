@@ -1,0 +1,10 @@
+<H2>MAKE A SHIRT, GO GO GO GO GO GO</h2>
+<h3><%= @error %></h3>
+  <%= form_for @shirt do |form| %>
+    <%= render "error", object: form.object %>
+    <p>
+    Name: <%= form.text_field :name %><BR>
+    Description: <%= form.text_area :description %>
+    </p>
+    <%= form.submit "Create!" %>
+  <% end %>

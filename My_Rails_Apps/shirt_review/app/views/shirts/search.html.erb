@@ -1,0 +1,10 @@
+<% if @shirts.length >0 %>
+  <H1>OMG You're searching so hard!</H1>
+<% else %>
+  <H1>Um... We don't have any of that...</H1><BR>
+  <%= image_tag 'where.gif' %>
+<% end %>
+
+<%= render "search" %>
+
+<%= render "results" %>

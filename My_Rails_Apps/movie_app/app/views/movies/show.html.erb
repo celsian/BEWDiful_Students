@@ -1,0 +1,7 @@
+<h2><%= @movie.title %></h2>
+<%= @movie.description %><br>
+<br>
+Year Released: <%= @movie.year_released %><br>
+Rating: <%= @movie.rating %><BR>
+<br>
+<%= link_to "Edit", edit_movie_path %> <%= link_to "Delete", @movie, confirm: "Are you sure?", method: :delete %>

@@ -1,0 +1,5 @@
+<% if @shirt.errors.any? %>
+  <% @shirt.errors.messages.each do |attribute, message| %>
+    <%= "#{Shirt.human_attribute_name(attribute)} #{message[0]}" %><br>
+  <% end %>
+<% end %>

@@ -1,9 +1,8 @@
-<H2>Movies and stuff.</H2>
-
-<ul>
-<% Movies.all.each do |x| %>
-<li><%= x.title %> | <%= x.description %> | <%= x.year_released %> </li>
-<% end %>
-</ul>
-
-<%= link_to "Main Movie Page", movies_main_path %>
+<H3>Welcome to RetFlix</H3>
+<HR>
+Please make a selection:<br>
+<br>
+<%= link_to "View Movie Database", movies_all_path %><br>
+<%= link_to "Add New Movie", new_movie_path %><br>
+<br>
+<%= render "search" %>

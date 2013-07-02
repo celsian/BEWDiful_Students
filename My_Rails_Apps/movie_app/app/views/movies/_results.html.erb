@@ -1,0 +1,5 @@
+<ul>
+<% @movies.each do |x| %>
+<li><%= link_to "#{x.title}", movie_path(x)  %> | <%= x.description %> | <%= x.year_released %> | <%= x.rating %></li>
+<% end %>
+</ul>
