@@ -1,0 +1,8 @@
+<% if @shirt.errors.count != 0 %>
+  <%= pluralize(@shirt.errors.count, "error") %> prevented submission:
+  <ol>
+  <% @shirt.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ol>
+<% end %>

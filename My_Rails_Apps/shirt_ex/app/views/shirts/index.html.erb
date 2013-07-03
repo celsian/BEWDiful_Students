@@ -1,0 +1,10 @@
+<h2>Shirt Outlet Mall!</h2>
+<% if flash[:success] %>
+  <%= flash[:success] %><br><br>
+<% end %>
+<%= link_to "Add a new shirt", new_shirt_path %>
+<ul>
+<% @shirts.each do |x| %>
+<li><%= x %> <%= link_to "Show", shirt_path(x) %> <%= link_to "Edit", edit_shirt_path(x) %></li>
+<% end %>
+</ul>

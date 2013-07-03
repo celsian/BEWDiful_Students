@@ -1,0 +1,7 @@
+<%= form_for @shirt do |form| %>
+  <%= form.label :name %> <%= form.text_field :name %><br>
+  <%= form.label :color %> <%= form.text_field :color %><br>
+  <%= form.label :description %> <%= form.text_area :description, size: "30x4" %><br>
+  <BR>
+  <%= form.submit %>
+<% end %>

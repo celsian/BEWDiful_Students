@@ -1,0 +1,12 @@
+<h2>Ritly</h2>
+
+<%= form_for @url_code do |form| %>
+  <%= form.label :url %> <%= form.text_field :url %><br>
+  <%= form.submit %>
+<% end %>
+<br>
+<ul>
+<% @url_codes.each do |url_code| %>
+  <li>Url: <%= link_to "#{url_code.url}", url_code.url %> | Code: <%= url_code.code %> </li>
+<% end %>
+</ul>
