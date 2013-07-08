@@ -1,9 +1,8 @@
 Ritly::Application.routes.draw do
   root to: "url_codes#index"
+  resources :url_codes
 
   get '/:code', to: 'url_codes#link_away', as: "link_away"
-
-  resources :url_codes
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

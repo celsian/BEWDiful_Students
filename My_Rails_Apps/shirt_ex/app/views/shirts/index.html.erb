@@ -5,6 +5,6 @@
 <%= link_to "Add a new shirt", new_shirt_path %>
 <ul>
 <% @shirts.each do |x| %>
-<li><%= x %> <%= link_to "Show", shirt_path(x) %> <%= link_to "Edit", edit_shirt_path(x) %></li>
+<li><%= x %> <%= link_to "Show", shirt_path(x) %> <%= link_to "Edit", edit_shirt_path(x) %> <%= link_to "Delete", x, confirm: "Are you sure?", method: :delete %></li>
 <% end %>
 </ul>

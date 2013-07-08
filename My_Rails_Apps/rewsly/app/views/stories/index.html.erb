@@ -1,0 +1,7 @@
+<h2>Welcome to Rewsly</h2>
+  <table border="0"><tr><td><%= render "search" %></td><td> </td><td> <%= link_to "Add Story", new_story_path %></td></tr></table>
+<ul>
+  <% @stories.each do |story| %>
+    <li><%= story.upvotes %> | <%= link_to "#{story.title}", story_path(story) %> | <%= story.category %></li>
+  <% end %>
+</ul>

@@ -1,4 +1,7 @@
 <h2>Ritly</h2>
+<% if flash[:error] %>
+  <%= flash[:error] %><br><br>
+<% end %>
 
 <%= form_for @url_code do |form| %>
   <%= form.label :url %> <%= form.text_field :url %><br>
@@ -7,6 +10,6 @@
 <br>
 <ul>
 <% @url_codes.each do |url_code| %>
-  <li>Url: <%= link_to "#{url_code.url}", url_code.url %> | Code: <%= url_code.code %> </li>
+  <li>Url: <%= link_to "#{url_code.url}", url_code.url %> | Code: <%= url_code.code %> <%= link_to "Delete", url_code, confirm: "Are you sure?", method: :delete %></li>
 <% end %>
 </ul>

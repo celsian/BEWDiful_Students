@@ -1,31 +1,48 @@
 class UrlCodesController < ApplicationController
   def index
     @url_code = UrlCode.new
-    @url_codes = UrlCode.all.to_a 
+    @url_codes = UrlCode.all.to_a
   end
 
   def create
-    if !UrlCode.find_by(code: params[:url])
-      redirect_to root_path, flash: {failure: "Url already exists in the database."}
-    else
-      @url_code = UrlCode.new urlcode_params
+      url = format_url params[:url_code][:url]
+      @url_code = UrlCode.new
+      @url_code.url = url
       @url_code.code = random
-      @url_code.save
-    end
 
+      if UrlCode.find_by(url: url)
+        redirect_to root_path, flash: {error: "Url exists, code is: #{UrlCode.find_by(url: url).code}"}
+      else
+        @url_code.save
+        redirect_to root_path, flash: {error: "Url created, code is: #{UrlCode.find_by(url: url).code}"}
+      end
   end
 
   def link_away
-    redirect_to UrlCode.find_by(code: params[:code]).url
+    redirect_to (UrlCode.find_by(code: params[:code]).url)
   end
 
+  def format_url url
+      if url.include?("http://") || url.include?("https://")
+        return url
+      else
+        url = "http://" + url
+        format_url url
+      end
+  end
+          
   def random
-    random = "%06d" % rand(0..999999)
-    if UrlCode.find_by code: random
+    number = "%06d" % rand(0..999999)
+    if UrlCode.find_by code: number
       random
     else
-      return random
+      return number
     end
+  end
+  
+  def destroy
+    UrlCode.find(params[:id]).destroy
+    redirect_to root_path, flash: {error: "Url and Code deleted."}
   end
 
   private

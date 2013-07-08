@@ -1,0 +1,7 @@
+<h2>Search results for: <%= params[:story][:title] %></h2>
+
+<ul>
+  <% @stories.each do |story| %>
+    <li><%= story.upvotes %> | <%= link_to "#{story.title}", story_path(story) %> | <%= story.category %></li>
+  <% end %>
+</ul>
