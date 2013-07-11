@@ -4,6 +4,11 @@ class StoriesController < ApplicationController
     @stories = Story.all
   end
 
+  def show
+    @story = Story.find(params[:id])
+    @url = @story.link
+  end
+
   def new
     @story = Story.new
   end
@@ -15,11 +20,6 @@ class StoriesController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-    @story = Story.find(params[:id])
-    @url = @story.link
   end
 
   def search

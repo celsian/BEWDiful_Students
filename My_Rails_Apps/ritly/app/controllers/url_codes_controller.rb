@@ -1,4 +1,6 @@
 class UrlCodesController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :create]
+
   def index
     @url_code = UrlCode.new
     @url_codes = UrlCode.all.to_a
