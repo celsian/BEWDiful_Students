@@ -3,7 +3,6 @@ class CreateGamesPlayersJoinTable < ActiveRecord::Migration
       create_table :games_players do |t|
         t.references :game
         t.references :player
-        t.references :winner
       end
   end
 end
