@@ -16,7 +16,7 @@ class UrlCodesController < ApplicationController
         redirect_to root_path, flash: {error: "Url exists, code is: #{UrlCode.find_by(url: url).code}"}
       else
         @url_code.save
-        redirect_to root_path, flash: {error: "Url created, code is: #{UrlCode.find_by(url: url).code}"}
+        redirect_to root_path, flash: {notice: "Url created, code is: #{UrlCode.find_by(url: url).code}"}
       end
   end
 

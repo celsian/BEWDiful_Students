@@ -13,7 +13,6 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new player_params
-    @player.wins = 0
 
     if @player.save #If it can save, redirects to movie path, otherwise renders new page again (and errors are displayed)
       redirect_to players_path

@@ -1,6 +1,9 @@
 <h2>Ritly</h2>
 <% if flash[:error] %>
-  <%= flash[:error] %><br><br>
+  <font color="red"><%= flash[:error] %></font><br><br>
+<% end %>
+<% if flash[:notice] %>
+  <font color="green"><%= flash[:notice] %></font><br><br>
 <% end %>
 
 <%= form_for @url_code do |form| %>
