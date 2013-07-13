@@ -1,7 +1,7 @@
 class CreateGames < ActiveRecord::Migration
   def change
     create_table :games do |t|
-      t.references :winner
+      t.belongs_to :bracket
 
       t.timestamps
     end

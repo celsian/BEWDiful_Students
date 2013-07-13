@@ -1,6 +1,9 @@
 Washoes::Application.routes.draw do
   root to: "players#index"
   resources :players
+  resources :games
+
+  post "/set_winner", to: "games#set_winner", as: "set_winner"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -41,6 +41,11 @@ class PlayersController < ApplicationController
     redirect_to players_path, flash: {success: "Player was deleted."}
   end
 
+  def picks
+    @players = Player.all
+    
+  end
+
   def player_params
     params.require(:player).permit(:name, :wins)
   end
