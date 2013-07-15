@@ -7,7 +7,7 @@ class GamesController < ApplicationController
   def set_winner
     @player = Player.find(params[:player])
     @game = Game.find(params[:game])
-    @game.winner = @player
+    @game.winners << @player
     @game.save
     redirect_to games_path
   end

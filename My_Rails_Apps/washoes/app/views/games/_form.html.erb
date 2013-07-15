@@ -1,0 +1,13 @@
+<%= form_for @game do |f| %>
+
+Player 1: <%= collection_select(:player1, :id, Player.all, :id, :name) %><br>
+Player 2: <%= collection_select(:player2, :id, Player.all, :id, :name) %>
+
+<div id="error_explanation">
+    <% if @game.errors.any? %>
+      <%= render "errors", object: f.object %>
+    <% end %>
+</div>
+
+  <%= f.submit %>
+<% end %>

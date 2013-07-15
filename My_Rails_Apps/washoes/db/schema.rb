@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20130712190848) do
   create_table "games_players", force: true do |t|
     t.integer "game_id"
     t.integer "player_id"
+    t.integer "winner_id"
   end
 
   create_table "players", force: true do |t|
