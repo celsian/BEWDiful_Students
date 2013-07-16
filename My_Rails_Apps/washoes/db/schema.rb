@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20130712190848) do
 
   create_table "games", force: true do |t|
     t.integer  "bracket_id"
+    t.integer  "winner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,13 +30,11 @@ ActiveRecord::Schema.define(version: 20130712190848) do
   create_table "games_players", force: true do |t|
     t.integer "game_id"
     t.integer "player_id"
-    t.integer "winner_id"
   end
 
   create_table "players", force: true do |t|
     t.string   "name"
     t.integer  "active"
-    t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,6 +42,7 @@ ActiveRecord::Schema.define(version: 20130712190848) do
   create_table "points", force: true do |t|
     t.text     "score"
     t.integer  "player_id"
+    t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

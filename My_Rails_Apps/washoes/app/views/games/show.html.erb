@@ -1,0 +1,20 @@
+  <tr>
+    <td>ID: <%= link_to "#{@game.id}", game_path(@game) %> </td>
+    <td>
+      
+      <table border="0" cellpadding="0" width="150px" cellspacing="1">
+        
+        <% @game.players.each do |player| %>
+          <tr>
+            <td>
+              <li><%= player.name %></li>
+            </td>
+            <td><% if !@game.winner %>
+                  <%= form_for @game, url: set_winner_path do |f| %>
+                  <%= hidden_field_tag(:player, player.id) %>
+                  <%= hidden_field_tag(:game, @game.id) %>
+                  <%= f.submit "W" %>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>

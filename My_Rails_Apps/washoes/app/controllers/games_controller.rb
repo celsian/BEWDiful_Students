@@ -4,14 +4,9 @@ class GamesController < ApplicationController
     @game = Game.new
   end
 
-  def set_winner
-    @player = Player.find(params[:player])
-    @game = Game.find(params[:game])
-    @game.winners << @player
-    @game.save
-    redirect_to games_path
+  def show
+    @game = Game.find(1)
   end
-
 
   def new
     @game = Game.new
@@ -28,6 +23,7 @@ class GamesController < ApplicationController
       @game = Game.new
       @game.players << @player1
       @game.players << @player2
+      @game.add_points(@game.players)
 
       if @game.save
         redirect_to games_path
