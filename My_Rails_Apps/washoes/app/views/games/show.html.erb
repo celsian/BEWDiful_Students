@@ -1,7 +1,5 @@
-  <tr>
-    <td>ID: <%= link_to "#{@game.id}", game_path(@game) %> </td>
-    <td>
-      
+<br>
+<H3>Game ID: <%= link_to "#{@game.id}", game_path(@game) %></h3>
       <table border="0" cellpadding="0" width="150px" cellspacing="1">
         
         <% @game.players.each do |player| %>
@@ -9,12 +7,40 @@
             <td>
               <li><%= player.name %></li>
             </td>
-            <td><% if !@game.winner %>
-                  <%= form_for @game, url: set_winner_path do |f| %>
-                  <%= hidden_field_tag(:player, player.id) %>
-                  <%= hidden_field_tag(:game, @game.id) %>
-                  <%= f.submit "W" %>
-                <% end %>
-            </td>
           </tr>
         <% end %>
+      </table>
+<br>
+<b><i>Points:</i></b>
+<table border="1" cellpadding="2" cellspacing="0  ">
+  <tr valign="top">
+    <td align="top">
+      <table border="1" cellpadding="2" cellspacing="0">
+        <tr>
+          <td><%= @game.players[0].name %>: </td>
+          <% @points_a.score.each do |value| %>
+            <td><%= value %></td>
+          <% end %>
+          <td>Total: <%= @points_a.total %></td>
+        </tr>
+        <tr>
+          <td><%= @game.players[1].name %>: </td>
+          <% @points_b.score.each do |value| %>
+            <td><%= value %></td>
+          <% end %>
+          <td>Total: <%= @points_b.total %></td>
+        </tr>
+      </table>
+    </td>
+    <td>
+
+      <% if !@game.winner %>
+        <%= form_for @points_a, url: set_winner_path do |f| %>
+          <%= f.text_field :score %><br>
+          <%= f.text_field :score %><br>
+          <%= f.submit "Add Points" %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>

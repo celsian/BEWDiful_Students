@@ -4,4 +4,8 @@ class Player < ActiveRecord::Base
 
   validates :name, :presence => { :message => " is required." }
 
+  def wins
+    Game.where(winner: self).length
+  end
+
 end

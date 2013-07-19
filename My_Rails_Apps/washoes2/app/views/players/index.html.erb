@@ -1,0 +1,14 @@
+<h2>Player List</h2>
+<% if flash[:success] %>
+  <%= flash[:success] %><br><br>
+<% end %>
+<%= link_to "New Player", new_player_path %><br><br>
+
+<table border="1" cellpadding="2" width="350px" cellspacing="0">
+  <tr><td>Name:</td><td>Lifetime Wins:</td><td></td><td></td></tr>
+<% @players.each do |player| %>
+  <tr>
+  <td><%= link_to "#{player.name}", player_path(player) %> </td><td><%= player.wins %> </td><td> <center><%= link_to "Edit", edit_player_path(player) %> </center></td><td> <center><%= link_to "Delete", player, confirm: "Are you sure?", method: :delete %></center></td>
+  </tr>
+<% end %>
+</table>

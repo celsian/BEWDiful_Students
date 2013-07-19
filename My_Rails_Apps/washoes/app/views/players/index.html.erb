@@ -8,7 +8,7 @@
   <tr><td>Name:</td><td>Wins:</td><td></td><td></td></tr>
 <% @players.each do |player| %>
   <tr>
-  <td><%= link_to "#{player.name}", player_path(player) %> </td><td><%= player %> </td><td> <center><%= link_to "Edit", edit_player_path(player) %> </center></td><td> <center><%= link_to "Delete", player, confirm: "Are you sure?", method: :delete %></center></td>
+  <td><%= link_to "#{player.name}", player_path(player) %> </td><td><%= player.wins %> </td><td> <center><%= link_to "Edit", edit_player_path(player) %> </center></td><td> <center><%= link_to "Delete", player, confirm: "Are you sure?", method: :delete %></center></td>
   </tr>
 <% end %>
 </table>

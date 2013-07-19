@@ -1,0 +1,3 @@
+<h3>Posts</h3>
+<%= link_to "Write a new post", new_post_path, class: 'btn btn-primary' %><br><br>
+<%= simple_table_for @posts, with: PostsTable %>
