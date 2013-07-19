@@ -1,18 +1,5 @@
-<h2>Game ID: <%= "#{@game.id}" %></h2>
+<h3>Game ID: <%= "#{@game.id}" %></h3>
 <%= render "flash" %>
-<b>Players:</b>
-<br>
-<% @game.game_players.each do |game_player| %>
-  <li><%= game_player.player.name %></li>
-<% end %>
-<br>
-
-<% if @game.winner %>
-  <b>Winner:</b>
-  <li><%= @game.winner ? "#{@game.winner.name}" : "" %> </li>
-  <br>
-<% end %>
-
 <b>Points:</b>
 <table border="0" cellpadding="2" cellspacing="0  ">
   <tr valign="top">
@@ -34,11 +21,17 @@
     <td>
       <% if !@game.winner %>
         <%= form_for @game do |f| %>
-          <%= text_field(:points, :score1) %><br>
-          <%= text_field(:points, :score2) %><br>
+          <%= text_field :points, :score1, autofocus: true %><br>
+          <%= text_field :points, :score2 %><br>
           <%= f.submit %>
         <% end %>
       <% end %>
     </td>
   </tr>
 </table>
+<br>
+<% if @game.winner %>
+  <b>Winner:</b>
+  <li><%= @game.winner ? "#{@game.winner.name}" : "" %> </li>
+  <br>
+<% end %>
