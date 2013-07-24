@@ -7,6 +7,7 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @point = Point.new
+    @game_form = Game.new
 
     check_winner
   end

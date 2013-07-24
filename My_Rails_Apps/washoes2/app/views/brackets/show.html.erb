@@ -1,0 +1,14 @@
+<h2>Bracket: <%= @bracket.name %></h2>
+<h3>Winner: <% if @bracket.winner %>
+          <%= @bracket.winner.name %>
+        <% else %>
+          None!
+        <% end %></h3>
+        Players:<br>
+      <% @bracket.players.each do |player| %>
+        <%= "#{player.name}, " %>
+      <% end %>
+      <br><br>
+      <% @bracket.games.each do |game| %>
+        <%= game.id %>
+      <% end %>

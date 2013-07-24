@@ -8,6 +8,16 @@
         <% @game.game_players.each do |game_player| %>
         <tr>
           <td><%= game_player.player.name %>: </td>
+
+            <td><% if !@game.winner %>
+                  <%= form_for @game_form, as: :post, url: set_winner_path do |f| %>
+                  <%= hidden_field_tag(:player, game_player.player.id) %>
+                  <%= hidden_field_tag(:game, @game.id) %>
+                  <%= f.submit "W" %>
+                <% end %>
+              <% end %>
+            </td>
+
           <% game_player.points.each do |point| %>
             <% if point.score %>
               <td><center><%= point.score %></center></td>

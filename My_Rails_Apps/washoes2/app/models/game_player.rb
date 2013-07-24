@@ -1,9 +1,10 @@
 class GamePlayer < ActiveRecord::Base
   has_many :points
-  belongs_to :game
+  belongs_to :game, dependent: :destroy
   belongs_to :player
+  belongs_to :bracket
 
-  validates :game_id, uniqueness: true
+  # validates :game_id, uniqueness: true
 
   accepts_nested_attributes_for :points
 

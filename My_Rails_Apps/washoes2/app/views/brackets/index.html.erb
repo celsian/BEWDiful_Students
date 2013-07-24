@@ -1,0 +1,19 @@
+<h2>Brackets:</h2>
+<%= render "flash" %>
+<%= link_to "New Bracket", new_bracket_path %><br><br>
+<% @brackets.each do |bracket| %>
+  <ol>
+    <li><%= link_to "#{bracket.name}", bracket_path(bracket) %> | Players: <%= bracket.players.length %> | Winner: 
+      <% if bracket.winner %>
+        <%= bracket.winner.name %>
+      <% else %>
+        None!
+      <% end %>
+       | <%= link_to "Delete", bracket, confirm: "Are you sure?", method: :delete %></li>
+    <ul>
+      <% bracket.players.each do |player| %>
+        <li><%= player.name %></li>
+      <% end %>
+    </ul>
+  </ol>
+<% end %>

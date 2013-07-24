@@ -2,6 +2,7 @@ Washoes2::Application.routes.draw do
   root to: "players#index"
   resources :players
   resources :games
+  resources :brackets
 
   post "/set_winner", to: "games#set_winner", as: "set_winner"
   
