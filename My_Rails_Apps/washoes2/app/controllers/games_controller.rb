@@ -65,9 +65,9 @@ class GamesController < ApplicationController
     @player = Player.find(params[:player])
     @game = Game.find(params[:game])
     if @game.set_winner(@player)
-      redirect_to games_path, flash: {notice: "#{@player.name} was set as winner for Game ID: #{@game.id}"}
+      redirect_to game_path(@game), flash: {notice: "#{@player.name} was set as winner for Game ID: #{@game.id}"}
     else
-      redirect_to games_path, flash: {error: "#{@player.name} was NOT set as winner for Game ID: #{@game.id}"}
+      redirect_to game_path(@game), flash: {error: "#{@player.name} was NOT set as winner for Game ID: #{@game.id}"}
     end
   end
   

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  flavor_value: MyString
+  calories: MyString
+
+two:
+  flavor_value: MyString
+  calories: MyString

@@ -1,12 +1,25 @@
 class GamePlayer < ActiveRecord::Base
-  has_many :points
-  belongs_to :game, dependent: :destroy
+  has_many :points, dependent: :destroy
+  belongs_to :game
   belongs_to :player
   belongs_to :bracket
 
+  # validates :player, :presence => { :message => " is required." }
   # validates :game_id, uniqueness: true
 
   accepts_nested_attributes_for :points
+
+  def total_points
+    total_array = []
+
+    self.points.each do |point|
+      if point['score']
+        total_array << point['score']
+      end
+    end
+
+    total = total_array.reduce(0, :+)
+  end
 
   def total
     if self.points.length < 2

@@ -9,14 +9,16 @@
         <tr>
           <td><%= game_player.player.name %>: </td>
 
-            <td><% if !@game.winner %>
+            <% if !@game.winner %>
+            <td>
                   <%= form_for @game_form, as: :post, url: set_winner_path do |f| %>
                   <%= hidden_field_tag(:player, game_player.player.id) %>
                   <%= hidden_field_tag(:game, @game.id) %>
                   <%= f.submit "W" %>
                 <% end %>
-              <% end %>
             </td>
+            <% end %>
+            
 
           <% game_player.points.each do |point| %>
             <% if point.score %>
@@ -31,8 +33,8 @@
     <td>
       <% if !@game.winner %>
         <%= form_for @game do |f| %>
-          <%= text_field :points, :score1, autofocus: true %><br>
-          <%= text_field :points, :score2 %><br>
+          <%= text_field :points, :score1, autofocus: true, :autocomplete => :off %><br>
+          <%= text_field :points, :score2, :autocomplete => :off %><br>
           <%= f.submit %>
         <% end %>
       <% end %>
@@ -45,3 +47,5 @@
   <li><%= @game.winner ? "#{@game.winner.name}" : "" %> </li>
   <br>
 <% end %>
+
+<%= link_to "Back to Bracket", bracket_path(@game.bracket) %>

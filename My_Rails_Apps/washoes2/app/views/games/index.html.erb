@@ -2,10 +2,10 @@
 <%= render "flash" %>
 <%= link_to "New Game", new_game_path %><br><br>
 <table border="1" cellpadding="2" width="300px" cellspacing="0">
-  <tr><td>Game</td><td>Players</td><td></td></tr>
+  <tr><td>Game</td><td>Players</td><td>Bracket</td><td></td></tr>
 <% @games.each do |game| %>
   <tr>
-    <td>ID: <%= link_to "#{game.id}", game_path(game) %> </td>
+    <td>ID: <% if game.game_players.count == 2 %><%= link_to "#{game.id}", game_path(game) %><% else %><%= game.id %><% end %></td>
     <td>
       
       <table border="0" cellpadding="0" width="150px" cellspacing="1">
@@ -36,7 +36,8 @@
       </table>
 
     </td>
-    <td><center><%= link_to "Delete", game, confirm: "Are you sure?", method: :delete %></center></td>
+    <td><center><%= game.bracket.name %></center></td>
+    <td><center><%= link_to "Delete", game, data: { confirm: "Are you sure?" }, method: :delete %></center></td>
   </tr>
 <% end %>
 </table>

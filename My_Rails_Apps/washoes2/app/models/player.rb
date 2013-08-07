@@ -14,4 +14,24 @@ class Player < ActiveRecord::Base
     Bracket.where(winner: self).length
   end
 
+  def bracket_points(bracket)
+    points = []
+    self.game_players.each do |game_player|
+      if game_player.bracket == bracket
+        points << game_player.total_points
+      end
+    end
+    total = points.reduce(0, :+)
+    return total
+  end
+
+  def lifetime_points
+    points = []
+    self.game_players.each do |game_player|
+      points << game_player.total_points
+    end
+    total = points.reduce(0, :+)
+    return total
+  end
+
 end
