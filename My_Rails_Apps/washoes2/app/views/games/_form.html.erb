@@ -12,5 +12,5 @@
     <%= ff.collection_select :player_id, Player.all, :id, :name %><br>
   <% end %>
 
-  <%= f.submit %>
+  <%= f.submit nil, :class => 'btn btn-primary'   %>
 <% end %>

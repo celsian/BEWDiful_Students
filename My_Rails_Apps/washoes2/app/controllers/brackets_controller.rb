@@ -1,6 +1,10 @@
 class BracketsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @brackets = Bracket.all(:order => 'created_at DESC')
+    @brackets = current_user.brackets
+    @brackets = @brackets.sort_by { |hsh| hsh[:created_at] }
+    @brackets = @brackets.reverse
   end
 
   def show
@@ -12,7 +16,8 @@ class BracketsController < ApplicationController
 
   def new
     @bracket = Bracket.new
-    @players = Player.all(:order => 'name')
+    @players = current_user.players
+    @players = @players.sort_by { |hsh| hsh[:name] }
   end
 
   def create
@@ -28,11 +33,13 @@ class BracketsController < ApplicationController
       redirect_to new_bracket_path, flash: {error: "Error: Bracket requires name & Player count must be between 4 and 16."}
     else
       @bracket = Bracket.new(bracket_params)
-      @bracket.save
-      
-      @bracket.initial_create(array)
-
-      redirect_to brackets_path, flash: {notice: "Bracket '#{@bracket.name}' was created."}
+      @bracket.user = current_user
+      if @bracket.save
+        @bracket.initial_create(array)
+        redirect_to brackets_path, flash: {notice: "Bracket '#{@bracket.name}' was created."}
+      else
+        redirect_to new_bracket_path, flash: {error: "Error: Bracket name must be unique."}
+      end
     end
   end
 

@@ -4,9 +4,6 @@ class GamePlayer < ActiveRecord::Base
   belongs_to :player
   belongs_to :bracket
 
-  # validates :player, :presence => { :message => " is required." }
-  # validates :game_id, uniqueness: true
-
   accepts_nested_attributes_for :points
 
   def total_points

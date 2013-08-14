@@ -1,12 +1,15 @@
 class Bracket < ActiveRecord::Base
-  has_many :game_players
-  has_many :players, through: :game_players
+  has_many :game_players, dependent: :destroy
   has_many :games, dependent: :destroy
 
+  has_many :players, through: :game_players
+
+
   belongs_to :winner, class_name: "Player"
+  belongs_to :user
 
   validates :name, :presence => { :message => " is required." }
-  # validates :name, :uniqueness => :true
+  validates_uniqueness_of :name, :scope => :user_id
 
   def initial_create player_array
     #shuffles the players twice to randomize matchups.

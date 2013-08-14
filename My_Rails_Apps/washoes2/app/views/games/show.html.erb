@@ -1,5 +1,4 @@
 <h3>Game ID: <%= "#{@game.id}" %></h3>
-<%= render "flash" %>
 <b>Points:</b>
 <table border="0" cellpadding="2" cellspacing="0  ">
   <tr valign="top">
@@ -14,7 +13,7 @@
                   <%= form_for @game_form, as: :post, url: set_winner_path do |f| %>
                   <%= hidden_field_tag(:player, game_player.player.id) %>
                   <%= hidden_field_tag(:game, @game.id) %>
-                  <%= f.submit "W" %>
+                  <%= f.submit "W", :class => 'btn btn-primary'   %>
                 <% end %>
             </td>
             <% end %>
@@ -35,7 +34,7 @@
         <%= form_for @game do |f| %>
           <%= text_field :points, :score1, autofocus: true, :autocomplete => :off %><br>
           <%= text_field :points, :score2, :autocomplete => :off %><br>
-          <%= f.submit %>
+          <%= f.submit nil, :class => 'btn btn-primary' %>
         <% end %>
       <% end %>
     </td>

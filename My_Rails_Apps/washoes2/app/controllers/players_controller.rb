@@ -1,6 +1,9 @@
 class PlayersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @players = Player.all(:order => 'name')
+    @players = current_user.players
+    @players = @players.sort_by { |hsh| hsh[:name] }
   end
 
   def show
@@ -13,9 +16,10 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new player_params
+    @player.user = current_user
 
     if @player.save #If it can save, redirects to movie path, otherwise renders new page again (and errors are displayed)
-      redirect_to players_path
+      redirect_to players_path, flash: {success: "Player was created."}
     else
       render :new
     end
@@ -41,10 +45,9 @@ class PlayersController < ApplicationController
     redirect_to players_path, flash: {success: "Player was deleted."}
   end
 
-  def picks
-    @players = Player.all
-    
-  end
+  # def picks
+  #   @players = Player.all
+  # end
 
   def player_params
     params.require(:player).permit(:name, :wins)

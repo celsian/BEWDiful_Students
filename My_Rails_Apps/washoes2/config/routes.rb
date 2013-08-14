@@ -1,9 +1,11 @@
 Washoes2::Application.routes.draw do
-  root to: "players#index"
+  devise_for :users
+  root to: "rules#index"
   resources :players
   resources :games
   resources :brackets
 
+  get "/rules", to: "rules#index", as: "rules"
   post "/set_winner", to: "games#set_winner", as: "set_winner"
   
   # The priority is based upon order of creation: first created -> highest priority.
