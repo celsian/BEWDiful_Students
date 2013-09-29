@@ -6,4 +6,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
+
+  # def self.by_gender(gender)
+  #   where(gender: gender)
+  # end
+
+  scope :male, -> { where(gender: 'm') }
+
 end
